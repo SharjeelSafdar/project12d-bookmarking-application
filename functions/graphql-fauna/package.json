@@ -1,0 +1,20 @@
+{
+  "name": "graphql-fauna",
+  "description": "A Serverless JAMstack Bookmarking App with Gatsby, Netlify, FaunaDB, GraphQL and TypeScript",
+  "version": "1.0.0",
+  "author": "Mian Muhammad Sharjeel Safdar <miansharjeelsafdar@gmail.com>",
+  "main": "graphql-fauna.js",
+  "dependencies": {
+    "apollo-server-lambda": "^2.21.1",
+    "faunadb": "^4.1.1",
+    "graphql": "^15.5.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SharjeelSafdar/project12d-bookmarking-application"
+  },
+  "bugs": {
+    "url": "https://github.com/SharjeelSafdar/project12d-bookmarking-application/issues"
+  }
+}

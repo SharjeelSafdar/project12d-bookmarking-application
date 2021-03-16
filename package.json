@@ -38,7 +38,8 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "tsc && gatsby build",
+    "prebuild": "cd functions/graphql-fauna && npm install && cd ../..",
+    "build": "tsc && npm run prebuild && gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start:app": "npm run develop",

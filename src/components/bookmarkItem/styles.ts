@@ -1,5 +1,9 @@
 import { makeStyles, createStyles } from "@material-ui/core";
 
+interface Props {
+  isSelectionMode: boolean;
+}
+
 export const useStyles = makeStyles(theme =>
   createStyles({
     container: {
@@ -19,9 +23,11 @@ export const useStyles = makeStyles(theme =>
         visibility: "visible",
       },
     },
-    toggleBtn: {
+    checkbox: (props: Props) => ({
       marginRight: theme.spacing(1),
-    },
+      visibility: props.isSelectionMode ? "visible" : "hidden",
+      width: props.isSelectionMode ? "fit-content" : 0,
+    }),
     externalLinkBtn: {
       visibility: "hidden",
       marginLeft: "auto",

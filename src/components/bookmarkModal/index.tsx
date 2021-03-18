@@ -10,9 +10,12 @@ import {
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-// import { useUpdateTodoContentMutation } from "../../api";
-import { useStyles } from "./styles";
+import {
+  useCreateBookmarkMutation,
+  useUpdateBookmarkMutation,
+} from "../../api";
 import CustomTextField from "../customTextField";
+import { useStyles } from "./styles";
 import { Bookmark } from "../../types";
 
 export interface BookmarkModalProps {
@@ -34,6 +37,8 @@ const BookmarkModal: FC<BookmarkModalProps> = ({
   oldBookmark,
 }) => {
   const classes = useStyles();
+  const [createBookmark] = useCreateBookmarkMutation();
+  const [updateBookmark] = useUpdateBookmarkMutation();
 
   const initialValues: FormValueTypes = {
     title: oldBookmark ? oldBookmark.title : "",
@@ -45,10 +50,23 @@ const BookmarkModal: FC<BookmarkModalProps> = ({
     url: Yup.string().url("Must be a valid URL").required("Required"),
   });
 
-  const sleep = (time: number) => new Promise(acc => setTimeout(acc, time));
   const onSubmit = async (values: FormValueTypes) => {
-    await sleep(3000);
-    console.log(values);
+    const { title, url } = values;
+    try {
+      if (modalType === "New") {
+        const res = await createBookmark({
+          variables: { title, url },
+        });
+        console.log("New bookmark added: ", res);
+      } else if (!!oldBookmark) {
+        const res = await updateBookmark({
+          variables: { id: oldBookmark.id, title, url },
+        });
+        console.log("Bookmark updated: ", res);
+      }
+    } catch (err) {
+      console.log("Error: ", err);
+    }
     closeModal();
   };
 

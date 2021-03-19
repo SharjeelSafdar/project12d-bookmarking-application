@@ -1,11 +1,11 @@
 import React from "react";
 import { WrapRootElementBrowserArgs } from "gatsby";
-import { ThemeProvider } from "@material-ui/core/styles";
 import { ApolloProvider } from "@apollo/client";
+import { ThemeProvider } from "@material-ui/core";
 
-import { customMuiTheme } from "../context/muiTheme";
-import { apolloClient } from "../context/apolloClient";
 import { AppContextProvider } from "../context/appContext";
+import { apolloClient } from "../context/apolloClient";
+import { customMuiTheme } from "../context/muiTheme";
 
 export const wrapRootElement = ({ element }: WrapRootElementBrowserArgs) => (
   <ThemeProvider theme={customMuiTheme}>
